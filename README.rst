@@ -23,3 +23,13 @@
 9       \-          \-
 10      \-          \-
 ====    =========== ====
+
+****
+採点
+****
+`AtCoder「競技プログラミングの鉄則　演習問題集」 <https://atcoder.jp/contests/tessoku-book/tasks>`_
+
+****
+解答
+****
+`GitHubレポジトリ <https://github.com/E869120/kyopro-tessoku>`_
