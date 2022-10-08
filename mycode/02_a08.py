@@ -5,10 +5,14 @@ def main():
         grid[i] = list(map(int, input().split()))
 
     total = [[0] * (w + 1) for _ in range(h + 1)]
+    # 横方向
     for i in range(1, h + 1):
         for j in range(1, w + 1):
-            value = grid[i - 1][j - 1]
-            total[i][j] = value + total[i - 1][j] + total[i][j - 1] - total[i - 1][j - 1]
+            total[i][j] = grid[i - 1][j - 1] + total[i][j - 1]
+    # 縦方向
+    for i in range(1, h + 1):
+        for j in range(1, w + 1):
+            total[i][j] += total[i - 1][j]
 
     q = int(input())
     for i in range(q):
