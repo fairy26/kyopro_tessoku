@@ -5,16 +5,16 @@ def main():
     a.sort()
 
     i_left, i_right = 0, n
-    i = (i_left + i_right) // 2
 
-    while 0 < i < n:
+    while i_left <= i_right:
+        i = (i_left + i_right) // 2
+
         if x == a[i]:
             break
         if x > a[i]:
-            i_left = i
+            i_left = i + 1
         else:
-            i_right = i
-        i = (i_left + i_right) // 2
+            i_right = i - 1
 
     print(i + 1)  # 問題の添字 = index + 1
 
