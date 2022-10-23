@@ -1,22 +1,19 @@
-def check(target, x):
-    num = x**3 + x
-    if target >= num:
-        return True
-    return False
+def f(x):
+    return x**3 + x
 
 
 def main():
     n = int(input())
 
-    left, right = 1.0, float(n)
-    while left < right:
-        mid = round((left + right) / 2, 3)
-        if check(n, mid):
-            left = mid + 0.001
+    left, right = 1.0, 100.0
+    for _ in range(20):  # なんで20回までで終わるん？
+        mid = (left + right) / 2
+        if n > f(mid):
+            left = mid
         else:
-            right = mid - 0.001
+            right = mid
 
-    print(left)
+    print(mid)
 
 
 if __name__ == "__main__":
