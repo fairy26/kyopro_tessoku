@@ -1,6 +1,3 @@
-from bisect import bisect_right
-
-
 def main():
     n, k = map(int, input().split())
     a = list(map(int, input().split()))
@@ -8,8 +5,18 @@ def main():
     a.sort()
 
     ans = 0
-    for i, num in enumerate(a):
-        ans += bisect_right(a, num + k) - i - 1  # range - num自身; 「k以下」→ rightで含むように
+    for i in range(n - 1):
+
+        if i == 0:
+            right = 0
+
+        for j in range(right + 1, n):  # [前回超えたところ, n-1]
+            if a[j] > a[i] + k:  # 差がkを超えたら
+                j -= 1  # 超える1つ前まで添字を戻して
+                break
+
+        ans += j - i
+        right = j
 
     print(ans)
 
