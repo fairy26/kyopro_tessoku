@@ -36,25 +36,25 @@ def main():
     A = list(map(int, input().split()))  # [1, 100] * (N-1)
     B = list(map(int, input().split()))  # [1, 100] * (N-2)
 
-    rout = [[0] * N for _ in range(2)]
-    # rout[0][i]: cost
-    # rout[1][i]: from i room
+    # DPで探索
+    route = [0] * N
+    for i in range(N):
+        if i == 0:
+            route[i] = 0
+        elif i == 1:
+            route[i] = A[i - 1]
+        else:
+            route[i] = min(route[i - 1] + A[i - 1], route[i - 2] + B[i - 2])
 
-    rout[0][0] = 0
-    rout[1][0] = None
-    rout[0][1] = A[0]
-    rout[1][1] = 0
-    for i in range(2, N):
-        costs = [rout[0][i - 1] + A[i - 1], rout[0][i - 2] + B[i - 2]]
-
-        rout[0][i] = min(costs)
-        rout[1][i] = i - (1 + costs.index(rout[0][i]))
-
+    # 復元
     ans = [N]
-    step = rout[1][-1]
-    while step is not None:
-        ans.append(step + 1)
-        step = rout[1][step]
+    i = N - 1
+    while i > 0:
+        if route[i] == route[i - 1] + A[i - 1]:
+            i -= 1
+        else:
+            i -= 2
+        ans.append(i + 1)  # +1: idx -> num
 
     ans.reverse()
 
